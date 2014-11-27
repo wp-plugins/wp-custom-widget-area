@@ -26,7 +26,7 @@ A Wordpress Plugin to create a custom widget areas or sidebar easily. It allows 
 
 	1. create a custom widget area.
 	2. copy the code form "get code" Link
-	3. paste into wordpress thme where you want to display it
+	3. paste into wordpress theme where you want to display it
 
 == Screenshots ==
 
