@@ -91,16 +91,16 @@ class Plugin_Name_Admin {
 				$row = $wpdb->replace( $table_name, $new_data );
 				
 				if($row){
-					wp_send_json(['code'=>1, 'message' => $new_data['cwa_id'].' created successfully.']);
+					wp_send_json(array('code'=>1, 'message' => $new_data['cwa_id'].' created successfully.'));
 				}
 			}
 			else{
-				wp_send_json(['code' => 0, 'message' => 'Widget id already registered']);
+				wp_send_json(array('code' => 0, 'message' => 'Widget id already registered'));
 				
 			}
 		}
 		else{
-			wp_send_json(['code' => 0, 'message' => 'Widget area name or id not defined']);
+			wp_send_json(array('code' => 0, 'message' => 'Widget area name or id not defined'));
 		}
 		die(); // this is required to terminate immediately and return a proper response
 	}
@@ -112,12 +112,12 @@ class Plugin_Name_Admin {
 		
 
 		$row = $wpdb->delete( $table_name, array( 'cwa_id' => $cwa_id ), $where_format = null );
-		//wp_send_json_success(['code' => 1, 'message' => $cwa_id.' deleted successfully.']);
+		//wp_send_json_success(array('code' => 1, 'message' => $cwa_id.' deleted successfully.'));
 		
 		if($row>0)
-			wp_send_json(['code' => 1, 'message' => $cwa_id.' deleted successfully.']);
+			wp_send_json(array('code' => 1, 'message' => $cwa_id.' deleted successfully.'));
 		else
-			wp_send_json(['code' => 0, 'message' => 'Error accured!.']);
+			wp_send_json(array('code' => 0, 'message' => 'Error accured!.'));
 
 		die();
 	}
@@ -140,9 +140,9 @@ class Plugin_Name_Admin {
 			
 			if(empty($id)){
 				if($row)
-					wp_send_json(['code' => 0, 'message' => 'Widget id already registered']);
+					wp_send_json(array('code' => 0, 'message' => 'Widget id already registered'));
 				else
-					wp_send_json(['code' => 1, 'message' => 'Widget id available']);
+					wp_send_json(array('code' => 1, 'message' => 'Widget id available'));
 				die();
 			}
 			else{
@@ -154,7 +154,7 @@ class Plugin_Name_Admin {
 		}
 		else{
 			if(empty($id)){
-				wp_send_json(['code' => 0, 'message' => 'Invalid id, use [a-z]-[0-9]']);
+				wp_send_json(array('code' => 0, 'message' => 'Invalid id, use [a-z]-[0-9]'));
 			}
 			else{
 				return false;
@@ -200,7 +200,7 @@ class Plugin_Name_Admin {
 	}
 	public function validatePost(){
 		$data =$_POST['data'];
-		$new_data = [];
+		$new_data = array();
 		foreach ($data as $key => $value) {
 			# code...
 			$new_data[$key] = esc_html($value);
