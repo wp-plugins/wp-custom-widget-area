@@ -50,14 +50,14 @@
  	min-width: 200px;
  	display: inline-block;
  	font-size: 14px;
- 	vertical-align: middle;
+ 	vertical-align: top;
  	line-height: 30px;
  }
  .cwa-form-row{
  	margin-bottom: 5px;
  	padding: 5px;
  }	
- .cwa-form input[type=text], .cwa-form input[type=password], .cwa-form input[type=email], .cwa-form select{
+ .cwa-form input[type=text], .cwa-form input[type=password], .cwa-form input[type=email], .cwa-form select, .cwa-form textarea{
  	padding: 5px 10px;
  	border-radius: 5px;
  	min-width: 40%;

@@ -12,7 +12,8 @@ Create a Custom widget area or sidebar easily.
 
 == Description ==
 
-A Wordpress Plugin to create a custom widget areas or sidebar easily. It allows user to create multiple widget areas from admin panel. 
+A Wordpress Plugin to create a custom widget areas or sidebar easily. It allows user to create multiple widget areas from admin panel and allows to use it anywhere like in theme sidebar or in any page/post content. 
+
 
 == Installation ==
 
@@ -28,16 +29,33 @@ A Wordpress Plugin to create a custom widget areas or sidebar easily. It allows 
 	2. copy the code form "get code" Link
 	3. paste into wordpress theme where you want to display it
 
+= How to Use it in page or post content? =
+	1. Click on the "get shortcode" link form widget area table below.
+	2. Copy the shortcode and Paste it in a post or page editor in which you want it to display it.
+
+= How to customize widget style? =
+	1. Click on the advance link while creating new widget area and add widget class.
+	2. Add custom css targeting your widget area class. i.e. 
+	.mynewwidgetareaclass a{ color: red; } 
+	at the bottom of your style.css where ".mynewwidgetareaclass" is your widget area class.
+
 == Screenshots ==
 
 1. /assets/screenshot-1.png
 
 == Changelog ==
 
-= 1.0 =
+= 1.0.0 =
 * Launch version.
+
+= 1.0.1 =
+* added widget area shortcode
+* how to use update
+
+
 
 == Upgrade Notice ==
 
-= 1.0 =
-"bug fix"
+= 1.0.1 =
+* added widget area shortcode
+* how to use update

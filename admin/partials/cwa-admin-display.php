@@ -6,7 +6,7 @@
  * This file is used to markup the public-facing aspects of the plugin.
  *
  * @link       http://example.com
- * @since      1.0.0
+ * @since      1.0.1
  *
  * @package    Plugin_Name
  * @subpackage Plugin_Name/admin/partials
@@ -26,16 +26,10 @@ class CWA_view
 	}
 	public function displayView(){
 
-		//echo "<div class='wrap'><h2>Custom Widget Area</h2>";
-		/*add_meta_box(
-			'myplugin_sectionid',
-			__( 'Create Widget area', 'myplugin_textdomain' ),
-			array(new CWA_view(), 'myplugin_meta_box_callback'),
-			'my_custom_menu_page',
-			"normal"
-		);
-		do_meta_boxes( 'my_custom_menu_page', 'normal',array() );*/
+		
+		global $purl;
 		?>
+		
 		<div class="wrap">
  
             <div id="icon-themes" class="icon32"><br /></div>
@@ -54,13 +48,42 @@ class CWA_view
 						<p>
 							<ol class="list">
 								<li>Create a new Widget area.</li>
-								<li>Click on the get Code link.</li>
+								<li>Click on the "get code" link.</li>
 								<li>Copy the code and Paste it in a wordpress theme where you want to display it.</li>
+							</ul>
+						</p>
+						
+					</div>
+					<div class="how-to">
+						
+						<h4 style="margin-top: 0;">How to Use it in page or post content?</h4>
+						<p>
+							<ol class="list">
+								<li>Click on the "get shortcode" link form widget area table below.</li>
+								<li>Copy the shortcode and Paste it in a post or page editor in which you want it to display it.</li>
 							</ul>
 						</p>	
 					</div>
-					
+					<div class="how-to">
+						
+						<h4 style="margin-top: 0;">How to customize widget style?</h4>
+						<p>
+							<ol class="list">
+								<li>Click on the advance link while creating new widget area and add widget class.</li>
+								<li>Add custom css targeting your widget area class. i.e. <br>
+								<code>
+									.mynewwidgetareaclass a{
+										color: red;
+									} 
+								</code><br>
+								at the bottom of your style.css 
+								where ".mynewwidgetareaclass" is your widget area class.
+								</li>
+							</ul>
+						</p>	
+					</div>
 				</div>
+				
 			
 			</div>
 		</div>
@@ -121,6 +144,7 @@ class CWA_view
 				</div>
 				
 			</div>
+
 			<div class="cwa-form-row">
 					<a href="#" id="cwa-advance-btn">Advanced</a>
 				</div> 	
@@ -142,9 +166,9 @@ class CWA_view
 					<th>Name</th>
 					<th>Id</th>
 					<th>Description</th>
-					<td>Widget Class</th>
+					<td>Widget class</th>
 					<td>Widget header class</th>
-					<th>Last updated</th>
+					<th></th>
 					<th></th>
 				</tr>
 			</thead>
@@ -161,7 +185,7 @@ class CWA_view
 						<td><?php echo $table->cwa_description; ?></td>
 						<td><?php echo $table->cwa_widget_class; ?></td>
 						<td><?php echo $table->cwa_widget_header_class; ?></td>
-						<td><?php echo $table->last_updated; ?></td>
+						<td><a href="#get_shortcode" data-id="<?php echo $table->cwa_id; ?>" class="cwa-detail-link tooltip" title="[cwa id='<?php echo $table->cwa_id; ?>']">Get shortcode</a> </td>
 						<td><a href="#get_code" data-id="<?php echo $table->cwa_id; ?>" class="cwa-detail-link tooltip" title="dynamic_sidebar( '<?php echo $table->cwa_id; ?>' );">Get code</a> / <a href="#delete" data-id="<?php echo $table->cwa_id; ?>" class="cwa-delete-link">Delete</a></td>
 					</tr>
 					<?php
