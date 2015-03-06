@@ -9,14 +9,14 @@
  * that starts the plugin.
  *
  * @link              http://example.com
- * @since             1.0.1
+ * @since             1.0.2
  * @package           Custom widget area
  *
  * @wordpress-plugin
  * Plugin Name:       WP Custom Widget area
  * Plugin URI:        http://kishorkhambu.com.np/plugins/
  * Description:       A wordpress plugin to create custom dynamic widget area.
- * Version:           1.0.1
+ * Version:           1.0.2
  * Author:            Kishor Khambu
  * Author URI:        http://kishorkhambu.com.np
  * License:           GPL-2.0+
@@ -42,10 +42,10 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-custom-widget-area
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-custom-widget-area-deactivator.php';
 
 /** This action is documented in includes/class-wp-custom-widget-area-activator.php */
-register_activation_hook( __FILE__, array( 'Plugin_Name_Activator', 'activate' ) );
+register_activation_hook( __FILE__, array( 'Custom_Widget_Area_Activator', 'activate' ) );
 
 /** This action is documented in includes/class-wp-custom-widget-area-deactivator.php */
-register_deactivation_hook( __FILE__, array( 'Plugin_Name_Deactivator', 'deactivate' ) );
+register_deactivation_hook( __FILE__, array( 'Custom_Widget_Area_Deactivator', 'deactivate' ) );
 
 /**
  * The core plugin class that is used to define internationalization,
@@ -60,10 +60,10 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/class-custom-widget-area.ph
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    1.0.1
+ * @since    1.0.2
  */
 function run_plugin_name() {
-	$plugin = new Plugin_Name();
+	$plugin = new Custom_Widget_Area();
 	$plugin->run();
 
 }

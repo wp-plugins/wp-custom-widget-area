@@ -4,10 +4,10 @@
  * The dashboard-specific functionality of the plugin.
  *
  * @link       http://example.com
- * @since      1.0.1
+ * @since      1.0.2
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/admin
+ * @package    Custom_Widget_Area
+ * @subpackage Custom_Widget_Area/admin
  */
 
 /**
@@ -16,18 +16,18 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the dashboard-specific stylesheet and JavaScript.
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/admin
+ * @package    Custom_Widget_Area
+ * @subpackage Custom_Widget_Area/admin
  * @author     Your Name <email@example.com>
  */
 
 require_once('partials/cwa-admin-display.php');
-class Plugin_Name_Admin {
+class Custom_Widget_Area_Admin {
 
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.2
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
@@ -36,7 +36,7 @@ class Plugin_Name_Admin {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.2
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -45,7 +45,7 @@ class Plugin_Name_Admin {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.2
 	 * @var      string    $plugin_name       The name of this plugin.
 	 * @var      string    $version    The version of this plugin.
 	 */
@@ -218,7 +218,7 @@ class Plugin_Name_Admin {
 	/**
 	 * Register the stylesheets for the Dashboard.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.2
 	 */
 	public function enqueue_styles() {
 
@@ -226,10 +226,10 @@ class Plugin_Name_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Plugin_Name_Admin_Loader as all of the hooks are defined
+		 * defined in Custom_Widget_Area_Admin_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Plugin_Name_Admin_Loader will then create the relationship
+		 * The Custom_Widget_Area_Admin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -241,7 +241,7 @@ class Plugin_Name_Admin {
 	/**
 	 * Register the JavaScript for the dashboard.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.2
 	 */
 	public function enqueue_scripts() {
 
@@ -249,10 +249,10 @@ class Plugin_Name_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Plugin_Name_Admin_Loader as all of the hooks are defined
+		 * defined in Custom_Widget_Area_Admin_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Plugin_Name_Admin_Loader will then create the relationship
+		 * The Custom_Widget_Area_Admin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */

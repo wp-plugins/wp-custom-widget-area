@@ -7,10 +7,10 @@
  * so that its ready for translation.
  *
  * @link       http://example.com
- * @since      1.0.1
+ * @since      1.0.2
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
+ * @package    Custom_Widget_Area
+ * @subpackage Custom_Widget_Area/includes
  */
 
 /**
@@ -19,17 +19,17 @@
  * Loads and defines the internationalization files for this plugin
  * so that its ready for translation.
  *
- * @since      1.0.1
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
+ * @since      1.0.2
+ * @package    Custom_Widget_Area
+ * @subpackage Custom_Widget_Area/includes
  * @author     Your Name <email@example.com>
  */
-class Plugin_Name_i18n {
+class Custom_Widget_Area_i18n {
 
 	/**
 	 * The domain specified for this plugin.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.2
 	 * @access   private
 	 * @var      string    $domain    The domain identifier for this plugin.
 	 */
@@ -38,7 +38,7 @@ class Plugin_Name_i18n {
 	/**
 	 * Load the plugin text domain for translation.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.2
 	 */
 	public function load_plugin_textdomain() {
 
@@ -53,7 +53,7 @@ class Plugin_Name_i18n {
 	/**
 	 * Set the domain equal to that of the specified domain.
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.2
 	 * @param    string    $domain    The domain that represents the locale of this plugin.
 	 */
 	public function set_domain( $domain ) {

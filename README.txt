@@ -3,8 +3,8 @@ Contributors: krozero
 Donate link: http://kishorkhambu.com.np/donation
 Tags: widget area, custom widget area, widget, simple widget area, custom sidebar, dynamic sidebar
 Requires at least: 3.0.1
-Tested up to: 4.0
-Stable tag: 4.3
+Tested up to: 4.1
+Stable tag: 1.0.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,16 +45,23 @@ A Wordpress Plugin to create a custom widget areas or sidebar easily. It allows 
 
 == Changelog ==
 
-= 1.0.0 =
-* Launch version.
+= 1.0.2 =
+* shortcode bug fix
+* removed unused assets
 
 = 1.0.1 =
 * added widget area shortcode
 * how to use update
 
+= 1.0.0 =
+* Launch version.
+
 
 
 == Upgrade Notice ==
+
+= 1.0.2 =
+* shortcode bug fix for page and posts. 
 
 = 1.0.1 =
 * added widget area shortcode

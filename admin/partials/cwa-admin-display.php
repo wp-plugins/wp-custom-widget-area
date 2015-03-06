@@ -6,10 +6,10 @@
  * This file is used to markup the public-facing aspects of the plugin.
  *
  * @link       http://example.com
- * @since      1.0.1
+ * @since      1.0.2
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/admin/partials
+ * @package    Custom_Widget_Area
+ * @subpackage Custom_Widget_Area/admin/partials
  */
 /**
 * 
@@ -50,22 +50,17 @@ class CWA_view
 								<li>Create a new Widget area.</li>
 								<li>Click on the "get code" link.</li>
 								<li>Copy the code and Paste it in a wordpress theme where you want to display it.</li>
-							</ul>
+							</ol>
 						</p>
-						
-					</div>
-					<div class="how-to">
-						
+						<br/>
 						<h4 style="margin-top: 0;">How to Use it in page or post content?</h4>
 						<p>
 							<ol class="list">
 								<li>Click on the "get shortcode" link form widget area table below.</li>
 								<li>Copy the shortcode and Paste it in a post or page editor in which you want it to display it.</li>
-							</ul>
+							</ol>
 						</p>	
-					</div>
-					<div class="how-to">
-						
+						<br/>
 						<h4 style="margin-top: 0;">How to customize widget style?</h4>
 						<p>
 							<ol class="list">
@@ -79,7 +74,7 @@ class CWA_view
 								at the bottom of your style.css 
 								where ".mynewwidgetareaclass" is your widget area class.
 								</li>
-							</ul>
+							</ol>
 						</p>	
 					</div>
 				</div>
