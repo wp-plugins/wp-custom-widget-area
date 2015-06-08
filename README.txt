@@ -3,8 +3,8 @@ Contributors: krozero
 Donate link: http://kishorkhambu.com.np/donation
 Tags: widget area, custom widget area, widget, simple widget area, custom sidebar, dynamic sidebar
 Requires at least: 3.0.1
-Tested up to: 4.1
-Stable tag: 1.0.3
+Tested up to: 4.2.2
+Stable tag: 1.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,9 @@ A Wordpress Plugin to create a custom widget areas or sidebar easily. It allows 
 
 == Changelog ==
 
+= 1.0.4 =
+* 4.2 compatible
+
 = 1.0.3 =
 * fix for "code conflict with CoSchedule plugin"
 
@@ -62,6 +65,9 @@ A Wordpress Plugin to create a custom widget areas or sidebar easily. It allows 
 
 
 == Upgrade Notice ==
+
+= 1.0.4 =
+* 4.2 compatible
 
 = 1.0.3 =
 * code conflict fix
