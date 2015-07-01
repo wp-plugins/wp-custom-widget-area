@@ -1,6 +1,5 @@
 === Plugin Name ===
 Contributors: krozero
-Donate link: http://kishorkhambu.com.np/donation
 Tags: widget area, custom widget area, widget, simple widget area, custom sidebar, dynamic sidebar, menu, menus, custom menu, custom menu locations, menu location, menu area
 Requires at least: 3.0.1
 Tested up to: 4.2.2
