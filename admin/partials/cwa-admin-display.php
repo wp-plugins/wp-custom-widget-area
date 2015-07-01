@@ -6,7 +6,7 @@
  * This file is used to markup the public-facing aspects of the plugin.
  *
  * @link       http://example.com
- * @since      1.0.4
+ * @since      1.1.0
  *
  * @package    Custom_Widget_Area
  * @subpackage Custom_Widget_Area/admin/partials
@@ -57,7 +57,7 @@ class CWA_view
 						<p>
 							<ol class="list">
 								<li>Click on the "get shortcode" link form widget area table below.</li>
-								<li>Copy the shortcode and Paste it in a post or page editor in which you want it to display it.</li>
+								<li>Copy the shortcode and Paste it in a post or page editor where you want to display it.</li>
 							</ol>
 						</p>	
 						<br/>

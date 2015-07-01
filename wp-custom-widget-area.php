@@ -16,7 +16,7 @@
  * Plugin Name:       WP Custom Widget area
  * Plugin URI:        http://kishorkhambu.com.np/plugins/
  * Description:       A wordpress plugin to create custom dynamic widget area.
- * Version:           1.0.4
+ * Version:           1.1.0
  * Author:            Kishor Khambu
  * Author URI:        http://kishorkhambu.com.np
  * License:           GPL-2.0+
@@ -60,7 +60,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/class-custom-widget-area.ph
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    1.0.4
+ * @since    1.1.0
  */
 function run_plugin_name() {
 	$plugin = new Custom_Widget_Area();
