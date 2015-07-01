@@ -1,18 +1,22 @@
 === Plugin Name ===
 Contributors: krozero
 Donate link: http://kishorkhambu.com.np/donation
-Tags: widget area, custom widget area, widget, simple widget area, custom sidebar, dynamic sidebar
+Tags: widget area, custom widget area, widget, simple widget area, custom sidebar, dynamic sidebar, menu, menus, custom menu, custom menu locations, menu location, menu area
 Requires at least: 3.0.1
 Tested up to: 4.2.2
-Stable tag: 1.0.4
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Create a Custom widget area or sidebar easily.
+
+A very simple way to create a custom widget area, sidebars and menu locations for your wordpress site.
+
 
 == Description ==
 
-A Wordpress Plugin to create a custom widget areas or sidebar easily. It allows user to create multiple widget areas from admin panel and allows to use it anywhere like in theme sidebar or in any page/post content. 
+A Wordpress Plugin that makes it very simple and easy to create a custom widget areas, sidebars and Menu locations. With the help of this plugin you can create multiple custom widget areas, menu locations and use it whereever you want to show in your site.
+
+It allows you to show custom widget areas and menu locations created with this plugin in any part of your site (i.e, as sidebars, bottom widget areas , in header and plus with this plugin now you can also show it in your pages and posts contents.) There's two way of using this plugins. To show it in posts or pages content use shortcode link "Get shortcode" and for other like to show as sidebars etc. use code link "Get code".
 
 
 == Installation ==
@@ -23,11 +27,11 @@ A Wordpress Plugin to create a custom widget areas or sidebar easily. It allows 
 
 == Frequently Asked Questions ==
 
-= How to use it? =
+= How to use custom widget area? =
 
-	1. create a custom widget area.
-	2. copy the code form "get code" Link
-	3. paste into wordpress theme where you want to display it
+	1. Create a new Widget area.
+	2. Click on the "get code" link.
+	3. Copy the code and Paste it in a wordpress theme where you want to display it.
 
 = How to Use it in page or post content? =
 	1. Click on the "get shortcode" link form widget area table below.
@@ -39,11 +43,39 @@ A Wordpress Plugin to create a custom widget areas or sidebar easily. It allows 
 	.mynewwidgetareaclass a{ color: red; } 
 	at the bottom of your style.css where ".mynewwidgetareaclass" is your widget area class.
 
+
+= How to use menu locations? = 
+	1. Create a new Menu Location.
+	2. Click on the "get code" link from table below.
+	3. Copy the code and Paste it in a wordpress theme where you want to display it.
+
+= How to Use it in page or post content? =
+	1. Click on the "get shortcode" link form table below.
+	2. Copy the shortcode and Paste it in a post or page editor where you want to display it.
+
+= How to customize menu style? =
+	1. Pass the extra arguments while calling function
+		i.e.
+		wp_nav_menu( array( 'theme_location'	=> 'footer-location', 'menu_class' => 'Cwa-menu', [arguments] => ['values']...	) ); 
+		Cick here to know more about available Parameters. 
+		[Note: for shortcode pass arguments like [menu theme_location='footer-location' 'menu_class'='Cwa-menu' [arguments]=[values]...]
+	2. Make sure you have passed custom menu class options i.e. 'menu_class' like in above code.
+	3. Add custom css targeting your menu_class or container_class etc. i.e. 
+		.Cwa-menu a{ color: red; } 
+		at the bottom of your style.css.
+
+
 == Screenshots ==
 
-1. /assets/screenshot-1.png
+1. /assets/widget-area-1.png
+2. /assets/widget-area-2.png
+3. /assets/menu-location-1.png
 
 == Changelog ==
+
+= 1.1.0 =
+* added new menu location feature
+* design update
 
 = 1.0.4 =
 * 4.2 compatible
@@ -65,6 +97,10 @@ A Wordpress Plugin to create a custom widget areas or sidebar easily. It allows 
 
 
 == Upgrade Notice ==
+
+= 1.1.0 =
+* added new menu location feature
+* design update
 
 = 1.0.4 =
 * 4.2 compatible

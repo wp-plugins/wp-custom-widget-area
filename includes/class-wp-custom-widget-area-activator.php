@@ -4,7 +4,7 @@
  * Fired during plugin activation
  *
  * @link       http://example.com
- * @since      1.0.4
+ * @since      1.1.0
  *
  * @package    Custom_Widget_Area
  * @subpackage Custom_Widget_Area/includes
@@ -15,7 +15,7 @@
  *
  * This class defines all code necessary to run during the plugin's activation.
  *
- * @since      1.0.4
+ * @since      1.1.0
  * @package    Custom_Widget_Area
  * @subpackage Custom_Widget_Area/includes
  * @author     Your Name <email@example.com>
@@ -27,7 +27,7 @@ class Custom_Widget_Area_Activator {
 	 *
 	 * Long Description.
 	 *
-	 * @since    1.0.4
+	 * @since    1.1.0
 	 */
 	public static function activate() {
 
@@ -58,6 +58,7 @@ class Custom_Widget_Area_Activator {
 			cwa_widget_wrapper varchar(25),
 			cwa_widget_header_class text,
 			cwa_widget_header_wrapper varchar(25),
+			cwa_type varchar(10),
 			last_updated date NOT NULL,
 			UNIQUE KEY id (id)
 		) $charset_collate;";
