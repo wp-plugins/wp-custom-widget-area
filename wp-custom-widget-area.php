@@ -41,6 +41,8 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-custom-widget-area
  */
 require_once plugin_dir_path( __FILE__ ) . 'includes/class-wp-custom-widget-area-deactivator.php';
 
+
+
 /** This action is documented in includes/class-wp-custom-widget-area-activator.php */
 register_activation_hook( __FILE__, array( 'Custom_Widget_Area_Activator', 'activate' ) );
 
@@ -72,3 +74,30 @@ run_plugin_name();
 function cb(){
 	echo "welcome to first metabox showcase";
 }
+
+
+// db fix for new version
+function db_update(){
+	global $wpdb;
+	$table_name = 'wp_cwa';
+	if(!!! $session_id)
+		session_start();
+
+	if(!isset($_SESSION['db_update'])){
+		$row = $wpdb->get_results(  "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS
+		WHERE table_name = '$table_name' AND column_name = 'cwa_type'"  );
+		
+		if(empty($row)){
+		   $wpdb->query("ALTER TABLE $table_name ADD cwa_type varchar (10) ");
+		   $updaterow = $wpdb->get_results(  "SELECT id FROM $table_name");
+		   foreach ($updaterow as $data) {
+		   	# code...
+		   	$up = $wpdb->update($table_name, array('cwa_type'=> 'widget'), array('id'=>$data->id));
+		   }
+		}
+		$_SESSION['db_update'] = true;
+	}
+	
+}
+
+db_update();
