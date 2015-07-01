@@ -69,7 +69,7 @@ It allows you to show custom widget areas and menu locations created with this p
 
 1. /assets/widget-area-1.png
 2. /assets/widget-area-2.png
-3. /assets/menu-location-3.png
+3. /assets/menu-location-1.png
 
 == Changelog ==
 
