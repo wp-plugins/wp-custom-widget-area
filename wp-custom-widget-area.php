@@ -16,7 +16,7 @@
  * Plugin Name:       WP Custom Widget area
  * Plugin URI:        http://kishorkhambu.com.np/plugins/
  * Description:       A wordpress plugin to create custom dynamic widget area.
- * Version:           1.1.1
+ * Version:           1.1.2
  * Author:            Kishor Khambu
  * Author URI:        http://kishorkhambu.com.np
  * License:           GPL-2.0+
@@ -62,7 +62,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/class-custom-widget-area.ph
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    1.1.1
+ * @since    1.1.2
  */
 function run_plugin_name() {
 	$plugin = new Custom_Widget_Area();
@@ -77,10 +77,10 @@ function cb(){
 
 
 // db fix for new version
-function db_update(){
+/*function db_update(){
 	global $wpdb;
 	$table_name = 'wp_cwa';
-	if(!!! $session_id)
+	if( (phpversion() < 5.4 && !!! session_id()) || (phpversion() > 5.3 && !!!session_status() == PHP_SESSION_NONE))
 		session_start();
 
 	if(!isset($_SESSION['db_update'])){
@@ -100,4 +100,21 @@ function db_update(){
 	
 }
 
-db_update();
+db_update();*/
+
+
+function myplugin_update_db_check() {
+    global $kz_db_version, $wpdb, $table_name;
+    if ( get_site_option( 'kz_db_version' ) != $kz_db_version ) {
+        Custom_Widget_Area_Activator::activate();
+       $x = $wpdb->query("ALTER TABLE $table_name ADD cwa_type varchar (10) ");
+       $updaterow = $wpdb->get_results(  "SELECT id FROM $table_name");
+	   foreach ($updaterow as $data) {
+		   	# code...
+		   	$up = $wpdb->update($table_name, array('cwa_type'=> 'widget'), array('id'=>$data->id));
+		}
+    }
+}
+add_action( 'plugins_loaded', 'myplugin_update_db_check' );
+
+

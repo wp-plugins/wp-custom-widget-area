@@ -20,7 +20,7 @@
  * https://github.com/tommcfarlin/WordPress-Plugin-Boilerplate/pull/123#issuecomment-28541913
  *
  * @link       http://example.com
- * @since      1.1.0
+ * @since      1.1.2
  *
  * @package    Custom_Widget_Area
  */

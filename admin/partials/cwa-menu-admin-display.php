@@ -6,7 +6,7 @@
  * This file is used to markup the public-facing aspects of the plugin.
  *
  * @link       http://example.com
- * @since      1.1.1
+ * @since      1.1.2
  *
  * @package    Custom_Widget_Area
  * @subpackage Custom_Widget_Area/admin/partials
