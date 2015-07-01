@@ -3,7 +3,7 @@ Contributors: krozero
 Tags: widget area, custom widget area, widget, simple widget area, custom sidebar, dynamic sidebar, menu, menus, custom menu, custom menu locations, menu location, menu area
 Requires at least: 3.0.1
 Tested up to: 4.2.2
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
