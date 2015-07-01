@@ -72,6 +72,9 @@ It allows you to show custom widget areas and menu locations created with this p
 
 == Changelog ==
 
+= 1.1.1 =
+* database update fix for v 1.1.0
+
 = 1.1.0 =
 * added new menu location feature
 * design update
@@ -96,6 +99,9 @@ It allows you to show custom widget areas and menu locations created with this p
 
 
 == Upgrade Notice ==
+
+= 1.1.1 =
+* database update fix for v 1.1.0
 
 = 1.1.0 =
 * added new menu location feature

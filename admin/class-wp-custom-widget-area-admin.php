@@ -4,7 +4,7 @@
  * The dashboard-specific functionality of the plugin.
  *
  * @link       http://example.com
- * @since      1.1.0
+ * @since      1.1.1
  *
  * @package    Custom_Widget_Area
  * @subpackage Custom_Widget_Area/admin
@@ -28,7 +28,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.1.0
+	 * @since    1.1.1
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
@@ -37,7 +37,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.1.0
+	 * @since    1.1.1
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -46,7 +46,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.1.0
+	 * @since    1.1.1
 	 * @var      string    $plugin_name       The name of this plugin.
 	 * @var      string    $version    The version of this plugin.
 	 */
@@ -355,7 +355,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * Register the stylesheets for the Dashboard.
 	 *
-	 * @since    1.1.0
+	 * @since    1.1.1
 	 */
 	public function enqueue_styles() {
 
@@ -378,7 +378,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * Register the JavaScript for the dashboard.
 	 *
-	 * @since    1.1.0
+	 * @since    1.1.1
 	 */
 	public function enqueue_scripts() {
 
