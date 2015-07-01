@@ -67,9 +67,9 @@ It allows you to show custom widget areas and menu locations created with this p
 
 == Screenshots ==
 
-1. /assets/widget-area-1.png
-2. /assets/widget-area-2.png
-3. /assets/menu-location-1.png
+1. Custom widget area basic view.
+2. Custom widget area advance view.
+3. ** Menu locations ** create and use menus anywhere.
 
 == Changelog ==
 
