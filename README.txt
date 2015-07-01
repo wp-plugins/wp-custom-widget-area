@@ -13,7 +13,7 @@ A very simple way to create a custom widget area, sidebars and menu locations fo
 
 == Description ==
 
-A Wordpress Plugin that makes it very simple and easy to create a custom widget areas, sidebars and Menu locations. With the help of this plugin you can create multiple custom widget areas, menu locations and use it whereever you want to show in your site.
+A Wordpress Plugin that makes it very simple and easy to create a custom widget areas, sidebars and Menu locations. With the help of this plugin you can create multiple custom widget areas, menu locations and use it wherever you want to show in your site.
 
 It allows you to show custom widget areas and menu locations created with this plugin in any part of your site (i.e, as sidebars, bottom widget areas , in header and plus with this plugin now you can also show it in your pages and posts contents.) There's two way of using this plugins. To show it in posts or pages content use shortcode link "Get shortcode" and for other like to show as sidebars etc. use code link "Get code".
 
