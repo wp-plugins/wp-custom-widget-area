@@ -4,7 +4,7 @@
  * Fired during plugin activation
  *
  * @link       http://example.com
- * @since      1.0.4
+ * @since      1.1.2
  *
  * @package    Custom_Widget_Area
  * @subpackage Custom_Widget_Area/includes
@@ -15,7 +15,7 @@
  *
  * This class defines all code necessary to run during the plugin's activation.
  *
- * @since      1.0.4
+ * @since      1.1.2
  * @package    Custom_Widget_Area
  * @subpackage Custom_Widget_Area/includes
  * @author     Your Name <email@example.com>
@@ -27,7 +27,7 @@ class Custom_Widget_Area_Activator {
 	 *
 	 * Long Description.
 	 *
-	 * @since    1.0.4
+	 * @since    1.1.2
 	 */
 	public static function activate() {
 
@@ -36,10 +36,7 @@ class Custom_Widget_Area_Activator {
 	}
 
 	private function install_db(){
-		global $wpdb;
-		$kz_db_version = '1.0';
-		$table_name = $wpdb->prefix . 'cwa';
-		$charset_collate = '';
+		global $wpdb, $kz_db_version, $table_name, $charset_collate;
 
 		if ( ! empty( $wpdb->charset ) ) {
 		  $charset_collate = "DEFAULT CHARACTER SET {$wpdb->charset}";
@@ -58,6 +55,7 @@ class Custom_Widget_Area_Activator {
 			cwa_widget_wrapper varchar(25),
 			cwa_widget_header_class text,
 			cwa_widget_header_wrapper varchar(25),
+			cwa_type varchar(10),
 			last_updated date NOT NULL,
 			UNIQUE KEY id (id)
 		) $charset_collate;";
@@ -65,7 +63,11 @@ class Custom_Widget_Area_Activator {
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		dbDelta( $sql );
 
-		add_option( 'kz_db_version', $kz_db_version );
+		if ( get_option('kz_db_version') != $kz_db_version ) {
+			update_option( 'kz_db_version', $kz_db_version );
+		}else{
+			add_option( 'kz_db_version', $kz_db_version );
+		}
 	}
 
 }
