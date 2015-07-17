@@ -75,7 +75,7 @@ It allows you to show custom widget areas and menu locations created with this p
 = 1.1.3 =
 * widget area bug fix
 * improved user interface
-* easy and simple how to use help guid
+* easy and simple how to use help guide
 
 = 1.1.2 =
 * database bug fix for v 1.1.0 and 1.1.1
@@ -111,7 +111,7 @@ It allows you to show custom widget areas and menu locations created with this p
 = 1.1.3 =
 * widget area bug fix
 * improved user interface
-* easy and simple how to use help guid
+* easy and simple how to use help guide
 
 = 1.1.2 =
 * database bug fix for v 1.1.0 and 1.1.1
