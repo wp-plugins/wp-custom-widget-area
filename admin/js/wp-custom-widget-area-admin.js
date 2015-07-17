@@ -88,6 +88,17 @@
 				reloadCwaTable();
 			 });
 		});
+		$(document).on('click', '.cwa-menu-delete-link', function(e){
+			e.preventDefault();
+			var id = $(this).data('id');
+
+			$.post(ajaxurl,{'action': 'delete_cwa', 'data': {'cwa_id': id}}, function(data){ 
+				//console.log(data);
+				showCwaError(data);
+				
+				reloadMenuTable();
+			 });
+		});
 
 		$('#cwa-advance-btn').on('click', function(e){
 			e.preventDefault();
@@ -147,6 +158,10 @@
 			var text = ($(this).html() == "Less")? "Read more" : "Less";
 			$(this).html(text);
 		});
+
+
+		//tab plugin
+		$('#tab-container').easytabs();
 
 		runTooltip();
 		 

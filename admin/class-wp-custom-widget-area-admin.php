@@ -4,7 +4,7 @@
  * The dashboard-specific functionality of the plugin.
  *
  * @link       http://example.com
- * @since      1.1.2
+ * @since      1.1.3
  *
  * @package    Custom_Widget_Area
  * @subpackage Custom_Widget_Area/admin
@@ -23,12 +23,13 @@
 
 require_once('partials/cwa-admin-display.php');
 require_once('partials/cwa-menu-admin-display.php');
+require_once('partials/cwa-help.php');
 class Custom_Widget_Area_Admin {
 
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.1.2
+	 * @since    1.1.3
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
@@ -37,7 +38,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.1.2
+	 * @since    1.1.3
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -46,7 +47,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.1.2
+	 * @since    1.1.3
 	 * @var      string    $plugin_name       The name of this plugin.
 	 * @var      string    $version    The version of this plugin.
 	 */
@@ -57,17 +58,19 @@ class Custom_Widget_Area_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 		$this->table_name = $table_name; 
-		$this->setuo_ajax_request();
+		$this->setup_ajax_request();
 		add_action( 'widgets_init', array($this, 'registerSidebar'));
 		$this->registerMenuLocations();
 	}
 	public function menu_setup(){
 		
-		add_menu_page('CWA Settings', 'CWA Settings', 'administrator', __FILE__, array($this->view, 'cwa_settings_page'),''/*plugins_url('/images/icon.png', __FILE__)*/);
-		add_submenu_page( __FILE__, 'Menu Locations', 'Menu Locations', 'administrator', 'manage_options', array($this->menuView, 'menu_settings_page') );
-		self::setuo_ajax_request();  		
+		add_menu_page('CWA Settings', 'CWA Settings', 'administrator', 'custom_widget_area', 	array($this->view, 'cwa_settings_page'),''/*plugins_url('/images/icon.png', __FILE__)*/);
+		add_submenu_page( 'custom_widget_area', 'Custom Widget Area', 'Custom Widget Area', 'administrator', 'custom_widget_area', array($this->view, 'cwa_settings_page') );
+		add_submenu_page( 'custom_widget_area', 'Menu Locations', 'Menu Locations', 'administrator', 'custom_menu_location', array($this->menuView, 'menu_settings_page') );
+		add_submenu_page( 'custom_widget_area', 'Help', 'Help', 'manage_options', 'cwa_help', 'help_page');
+		//self::setuo_ajax_request();  		
 	}
-	public function setuo_ajax_request(){
+	public function setup_ajax_request(){
 		add_action( 'wp_ajax_add_cwa', array($this, 'add_cwa'));
 		
 		add_action( 'wp_ajax_delete_cwa', array($this, 'delete_cwa'));
@@ -355,7 +358,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * Register the stylesheets for the Dashboard.
 	 *
-	 * @since    1.1.2
+	 * @since    1.1.3
 	 */
 	public function enqueue_styles() {
 
@@ -378,7 +381,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * Register the JavaScript for the dashboard.
 	 *
-	 * @since    1.1.2
+	 * @since    1.1.3
 	 */
 	public function enqueue_scripts() {
 
@@ -394,7 +397,9 @@ class Custom_Widget_Area_Admin {
 		 * class.
 		 */
 		wp_enqueue_script( 'tooltip', plugin_dir_url( __FILE__ ) . 'js/jquery.tooltipster.min.js', array( ), $this->version, false );
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-custom-widget-area-admin.js', array( 'jquery', 'tooltip'), $this->version, false );
+		wp_enqueue_script( 'hashchange', plugin_dir_url( __FILE__ ) . 'js/jquery.hashchange.min.js', array( ), $this->version, false );
+		wp_enqueue_script( 'easytabs', plugin_dir_url( __FILE__ ) . 'js/jquery.easytabs.min.js', array( 'hashchange'), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-custom-widget-area-admin.js', array( 'jquery', 'tooltip', 'easytabs'), $this->version, false );
 
 	}
 
