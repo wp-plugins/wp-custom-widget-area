@@ -6,7 +6,7 @@
  * This file is used to markup the public-facing aspects of the plugin.
  *
  * @link       http://example.com
- * @since      1.0.4
+ * @since      1.1.5
  *
  * @package    Custom_Widget_Area
  * @subpackage Custom_Widget_Area/admin/partials
@@ -21,20 +21,28 @@ class CWA_view
 	{
 		# code...
 	}
-	public function cwa_settings_page(){
-		add_action( 'add_meta_boxes', self::displayView());
-	}
+	
 	public function displayView(){
 
 		
 		global $purl;
 		?>
 		
-		<div class="wrap">
+		<div class="wrap cwa">
  
             <div id="icon-themes" class="icon32"><br /></div>
- 
-            <h2><?php _e( 'Custom widget area', 'wp-custom-widget-area' ); ?></h2>
+ 			<ul class="tabs">
+ 				<li class="active">
+ 					<h3><a href="<?php echo admin_url();?>admin.php?page=custom_widget_area"><?php _e( 'Custom widget area', 'wp-custom-widget-area' ); ?></a></h3>
+ 				</li>
+ 				<li>
+ 					<h3><a href="<?php echo admin_url();?>admin.php?page=custom_menu_location"><?php _e( 'Custom menu location', 'wp-custom-widget-area' ); ?></a></h3>
+ 				</li>
+ 				<li>
+ 					<h3><a href="<?php echo admin_url();?>admin.php?page=cwa_help"><?php _e( 'Help', 'wp-custom-widget-area' ); ?></a></h3>
+ 				</li>
+ 			</ul>
+            
 
 			<div class="welcome-panel custom-wp">
 				<div class="col col-8">
@@ -42,44 +50,7 @@ class CWA_view
 						self::widgetForm();
 					?>
 				</div>
-				<div class="col col-4">
-					<div class="how-to">
-						<h3>How to use?</h3>
-						<p>
-							<ol class="list">
-								<li>Create a new Widget area.</li>
-								<li>Click on the "get code" link.</li>
-								<li>Copy the code and Paste it in a wordpress theme where you want to display it.</li>
-							</ol>
-						</p>
-						<br/>
-						<h4 style="margin-top: 0;">How to Use it in page or post content?</h4>
-						<p>
-							<ol class="list">
-								<li>Click on the "get shortcode" link form widget area table below.</li>
-								<li>Copy the shortcode and Paste it in a post or page editor in which you want it to display it.</li>
-							</ol>
-						</p>	
-						<br/>
-						<h4 style="margin-top: 0;">How to customize widget style?</h4>
-						<p>
-							<ol class="list">
-								<li>Click on the advance link while creating new widget area and add widget class.</li>
-								<li>Add custom css targeting your widget area class. i.e. <br>
-								<code>
-									.mynewwidgetareaclass a{
-										color: red;
-									} 
-								</code><br>
-								at the bottom of your style.css 
-								where ".mynewwidgetareaclass" is your widget area class.
-								</li>
-							</ol>
-						</p>	
-					</div>
-				</div>
 				
-			
 			</div>
 		</div>
 		<div class="cwa-error" style="display:none;">
@@ -170,6 +141,13 @@ class CWA_view
 			<tbody>
 				<?php 
 				$count = 1;
+				if(empty($data)){
+					?>
+					<tr>
+						<td colspan="8" class="no-data">There is no data. create a new Widget area by filling above form.</td>
+					</tr>
+					<?php 
+				}
 				foreach ($data as $table) {
 					# code...
 					?>
@@ -197,7 +175,7 @@ class CWA_view
 	public function getWidgetData(){
 		global $wpdb, $table_name;
 
-		$sql = "SELECT * FROM $table_name";
+		$sql = "SELECT * FROM $table_name WHERE cwa_type='widget'";
 
 		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		$row = $wpdb->get_results( $sql, 'OBJECT');

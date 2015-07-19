@@ -1,9 +1,3 @@
-
-
-
-
-
-
 (function( $ ) {
 	'use strict';
 
@@ -50,7 +44,7 @@
 		 		});
 		 		//if(checkId(form_array.cwa_id)){	
 			 		$.post(ajaxurl,{'action': 'add_cwa', 'data': form_array}, function(data){ 
-			 			console.log(data);
+			 			//console.log(data);
 						reloadCwaTable();
 						showCwaError(data);
 						
@@ -60,20 +54,22 @@
 		 	}
 		 	
 		 });
-
+		 $('.cwa-form input[name=cancel]').on('click', function(){
+		 	resetForm();
+		 });
 		$('#cwa-form input[name=cwa_name]').on('change', function(){
 			var widget_id = $('#cwa-form input[name=cwa_id]'),
-			cwaId = $(this).val().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').replace(/ /g,"-");
+			cwaId = $(this).val().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').replace(/ /g,"-").toLowerCase();
 
 			if(widget_id.val() === ''){
 				widget_id.val(cwaId);
-				checkId(widget_id,cwaId);
+				checkId(widget_id,cwaId, 'widget');
 			}
 				
 		});
-		$('#cwa-form input[name=cwa_id]').on('change', function(){
+		$('#cwa-form input[name=cwa_id]').on('keyup', function(){
 			var self = this;
-			checkId(self, $(self).val());
+			checkId(self, $(self).val(), 'widget');
 		});
 		
 		
@@ -82,10 +78,21 @@
 			var id = $(this).data('id');
 
 			$.post(ajaxurl,{'action': 'delete_cwa', 'data': {'cwa_id': id}}, function(data){ 
-				console.log(data);
+				//console.log(data);
 				showCwaError(data);
 				
 				reloadCwaTable();
+			 });
+		});
+		$(document).on('click', '.cwa-menu-delete-link', function(e){
+			e.preventDefault();
+			var id = $(this).data('id');
+
+			$.post(ajaxurl,{'action': 'delete_menu', 'data': {'cwa_id': id}}, function(data){ 
+				console.log(data);
+				showCwaError(data);
+				
+				reloadMenuTable();
 			 });
 		});
 
@@ -99,6 +106,63 @@
 				$(this).text('Advanced');
 		});
 
+		/* menu scripts starts*/
+		$('#cwa-menu-form').on('submit', function(e){
+		 	e.preventDefault();
+
+		 	var flag = validateForm($(this).serializeArray());
+		 	if(flag){
+		 		//console.log();
+		 		var form_array = {};
+		 		$(this).serializeArray().map(function(item){
+		 			var vl = [];
+		 			if(item.value!==null)
+		 				form_array[item.name] = item.value;
+		 			
+		 		});
+		 		//if(checkId(form_array.cwa_id)){	
+			 		$.post(ajaxurl,{'action': 'add_menu', 'data': form_array}, function(data){ 
+			 			//console.log(data);
+						reloadMenuTable();
+						showCwaError(data);
+						
+						resetForm();
+					 });	
+		 		//}
+		 	}
+		 	
+		 });
+
+		$('#cwa-menu-form input[name=cwa_name]').on('change', function(){
+			
+			var menu_id = $('#cwa-menu-form input[name=cwa_id]'),
+			cwaId = $(this).val().replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-').replace(/ /g,"-").toLowerCase();
+			//console.log(menu_id.val());
+			if(menu_id.val() === ''){
+				menu_id.val(cwaId);
+				checkId(menu_id,cwaId, 'menu');
+			}
+				
+		});
+
+		$('#cwa-menu-form input[name=cwa_id]').on('keyup', function(){
+			console.log("hey");
+			var self = this;
+			checkId(self, $(self).val(), 'menu');
+		});
+		
+
+		$('.more').on('click', function(e){
+			e.preventDefault();
+			$(this).parent().toggleClass('show-less');
+			var text = ($(this).html() == "Less")? "Read more" : "Less";
+			$(this).html(text);
+		});
+
+
+		//tab plugin
+		$('#tab-container').easytabs();
+
 		runTooltip();
 		 
 	 });
@@ -107,8 +171,8 @@
 		window.xt = arr;
 		return true;
 	}
-	function checkId(self, cwa_id){
-		$.post(ajaxurl,{'action': 'check_cwa_id', 'data': {'cwa_id': cwa_id}}, function(data){ 
+	function checkId(self, cwa_id, type){
+		$.post(ajaxurl,{'action': (type=='widget')?'check_cwa_id': 'check_menu_id', 'data': {'cwa_id': cwa_id}}, function(data){ 
 				//console.log(data);
 				if(data.code === 0){
 					$(self).next('.cwa-form-message').html("<label class='cwa-warning' style='padding-left: 5px;'>"+data.message+"</label>");
@@ -128,10 +192,18 @@
 				//console.log(data);
 			 });
 	}
+	function reloadMenuTable(){
+		$.post(ajaxurl,{'action': 'reloadMenuTable'}, function(data){ 
+
+				$('#cwa-table-wrap').html(data);
+				runTooltip();
+				//console.log(data);
+			 });
+	}
 	function showCwaError(obj){
 
 		var type = (obj.code === 0)? "cwa-warning" : "cwa-success" ;
-		console.log(obj.code === 0);
+		//console.log(obj.code === 0);
 		var message = obj.message;
 		$('.cwa-error').html(message).addClass(type).fadeIn();
 		setTimeout(function(){
@@ -140,7 +212,7 @@
 	}
 	function resetForm(){
 		$('.cwa-form input[type="text"]' ).val('');
-		$('.cwa-form  cwa-form-message' ).empty();
+		$('.cwa-form  .cwa-form-message' ).empty();
 	}
 	function runTooltip(){
 		$('.tooltip').tooltipster({
