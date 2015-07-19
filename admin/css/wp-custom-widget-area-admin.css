@@ -160,7 +160,7 @@
  	z-index: 5;
  }
  .tabs{
- 	margin-bottom: 0;
+ 	margin-bottom: -1px;
  }
  .tabs li a{
  	padding: 10px 20px;
@@ -195,4 +195,6 @@
 	width: 100%;
 	min-width:  500px;
 }
-
+.no-data{
+	color: #999;
+}

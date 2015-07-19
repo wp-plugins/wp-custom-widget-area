@@ -1,9 +1,3 @@
-
-
-
-
-
-
 (function( $ ) {
 	'use strict';
 
@@ -71,9 +65,9 @@
 			}
 				
 		});
-		$('#cwa-form input[name=cwa_id]').on('change', function(){
+		$('#cwa-form input[name=cwa_id]').on('keyup', function(){
 			var self = this;
-			checkId(self, $(self).val());
+			checkId(self, $(self).val(), 'widget');
 		});
 		
 		
@@ -149,7 +143,11 @@
 				
 		});
 
-
+		$('#cwa-menu-form input[name=cwa_id]').on('keyup', function(){
+			console.log("hey");
+			var self = this;
+			checkId(self, $(self).val(), 'menu');
+		});
 		
 
 		$('.more').on('click', function(e){
@@ -181,7 +179,7 @@
 					$(self).next('.cwa-form-message').html("<label class='cwa-success' style='padding-left: 5px;'>"+data.message+"</label>");
 				}
 
-				//console.log(data);
+				console.log(data);
 			 });
 	};
 	function reloadCwaTable(){
@@ -212,7 +210,7 @@
 	}
 	function resetForm(){
 		$('.cwa-form input[type="text"]' ).val('');
-		$('.cwa-form  cwa-form-message' ).empty();
+		$('.cwa-form  .cwa-form-message' ).empty();
 	}
 	function runTooltip(){
 		$('.tooltip').tooltipster({

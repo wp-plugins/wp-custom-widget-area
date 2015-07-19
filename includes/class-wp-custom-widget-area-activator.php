@@ -4,7 +4,7 @@
  * Fired during plugin activation
  *
  * @link       http://example.com
- * @since      1.1.3
+ * @since      1.1.4
  *
  * @package    Custom_Widget_Area
  * @subpackage Custom_Widget_Area/includes
@@ -15,7 +15,7 @@
  *
  * This class defines all code necessary to run during the plugin's activation.
  *
- * @since      1.1.3
+ * @since      1.1.4
  * @package    Custom_Widget_Area
  * @subpackage Custom_Widget_Area/includes
  * @author     Your Name <email@example.com>
@@ -27,16 +27,14 @@ class Custom_Widget_Area_Activator {
 	 *
 	 * Long Description.
 	 *
-	 * @since    1.1.3
+	 * @since    1.1.4
 	 */
 	public static function activate() {
 
-		self::install_db();
-
-	}
-
-	private function install_db(){
-		global $wpdb, $kz_db_version, $table_name, $charset_collate;
+		global $wpdb;
+		$kz_db_version = '1.1.4';
+		$table_name = $wpdb->prefix . 'cwa';
+		$charset_collate = '';
 
 		if ( ! empty( $wpdb->charset ) ) {
 		  $charset_collate = "DEFAULT CHARACTER SET {$wpdb->charset}";
@@ -68,6 +66,8 @@ class Custom_Widget_Area_Activator {
 		}else{
 			add_option( 'kz_db_version', $kz_db_version );
 		}
+
 	}
+
 
 }

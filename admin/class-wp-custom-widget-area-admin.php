@@ -4,7 +4,7 @@
  * The dashboard-specific functionality of the plugin.
  *
  * @link       http://example.com
- * @since      1.1.3
+ * @since      1.1.4
  *
  * @package    Custom_Widget_Area
  * @subpackage Custom_Widget_Area/admin
@@ -29,7 +29,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.1.3
+	 * @since    1.1.4
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
@@ -38,7 +38,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.1.3
+	 * @since    1.1.4
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -47,7 +47,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.1.3
+	 * @since    1.1.4
 	 * @var      string    $plugin_name       The name of this plugin.
 	 * @var      string    $version    The version of this plugin.
 	 */
@@ -64,9 +64,9 @@ class Custom_Widget_Area_Admin {
 	}
 	public function menu_setup(){
 		
-		add_menu_page('CWA Settings', 'CWA Settings', 'administrator', 'custom_widget_area', 	array($this->view, 'cwa_settings_page'),''/*plugins_url('/images/icon.png', __FILE__)*/);
-		add_submenu_page( 'custom_widget_area', 'Custom Widget Area', 'Custom Widget Area', 'administrator', 'custom_widget_area', array($this->view, 'cwa_settings_page') );
-		add_submenu_page( 'custom_widget_area', 'Menu Locations', 'Menu Locations', 'administrator', 'custom_menu_location', array($this->menuView, 'menu_settings_page') );
+		add_menu_page('CWA Settings', 'CWA Settings', 'administrator', 'custom_widget_area', 	array($this->view, 'displayView'),''/*plugins_url('/images/icon.png', __FILE__)*/);
+		add_submenu_page( 'custom_widget_area', 'Custom Widget Area', 'Custom Widget Area', 'administrator', 'custom_widget_area', array($this->view, 'displayView') );
+		add_submenu_page( 'custom_widget_area', 'Menu Locations', 'Menu Locations', 'administrator', 'custom_menu_location', array($this->menuView, 'displayView') );
 		add_submenu_page( 'custom_widget_area', 'Help', 'Help', 'manage_options', 'cwa_help', 'help_page');
 		//self::setuo_ajax_request();  		
 	}
@@ -149,7 +149,7 @@ class Custom_Widget_Area_Admin {
 
 		$valid = self::checSpecialChar($cwa_id);
 		
-		if($valid){
+		if($valid && !empty($cwa_id)){
 
 			$sql = "SELECT * FROM $this->table_name WHERE cwa_id='$cwa_id' AND cwa_type='widget'";
 
@@ -169,6 +169,15 @@ class Custom_Widget_Area_Admin {
 				else
 					return true;	
 			}	
+		}
+		elseif (empty($cwa_id)) {
+			# code...
+			if(empty($id)){
+				wp_send_json(array('code' => 0, 'message' => 'Please enter a Widget id '));
+			}
+			else{
+				return false;
+			}
 		}
 		else{
 			if(empty($id)){
@@ -278,13 +287,13 @@ class Custom_Widget_Area_Admin {
 
 		$valid = self::checSpecialChar($cwa_id);
 		
-		if($valid){
+		if($valid && !empty($cwa_id)){
 
 			$sql = "SELECT * FROM $this->table_name WHERE cwa_id='$cwa_id' AND cwa_type='menu'";
 
 			
 			$row = $wpdb->get_row( $sql, 'OBJECT');
-			
+			//wp_send_json(!!$cwa_id);die();
 			if(empty($id)){
 				if($row)
 					wp_send_json(array('code' => 0, 'message' => 'Menu Location id already registered'));
@@ -299,6 +308,14 @@ class Custom_Widget_Area_Admin {
 					return true;	
 			}	
 		}
+		elseif(empty($cwa_id)){
+			if(empty($id)){
+				wp_send_json(array('code' => 0, 'message' => 'Please enter a Menu Location id'));
+			}
+			else{
+				return false;
+			}
+		}
 		else{
 			if(empty($id)){
 				wp_send_json(array('code' => 0, 'message' => 'Invalid id, use [a-z]-[0-9]'));
@@ -307,6 +324,7 @@ class Custom_Widget_Area_Admin {
 				return false;
 			}
 		}
+		die;
 	}
 	public function get_menu(){
 		global $wpdb;
@@ -348,7 +366,7 @@ class Custom_Widget_Area_Admin {
 		return $new_data;
 	}
 	public function checSpecialChar($string){
-		if(!preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬]/', $string)){
+		if(!preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬ ]/', $string)){
 			return true;
 		}
 		else{
@@ -358,7 +376,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * Register the stylesheets for the Dashboard.
 	 *
-	 * @since    1.1.3
+	 * @since    1.1.4
 	 */
 	public function enqueue_styles() {
 
@@ -381,7 +399,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * Register the JavaScript for the dashboard.
 	 *
-	 * @since    1.1.3
+	 * @since    1.1.4
 	 */
 	public function enqueue_scripts() {
 

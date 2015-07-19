@@ -16,7 +16,7 @@
  * Plugin Name:       WP Custom Widget area
  * Plugin URI:        http://kishorkhambu.com.np/plugins/
  * Description:       A wordpress plugin to create custom dynamic widget area.
- * Version:           1.1.3
+ * Version:           1.1.4
  * Author:            Kishor Khambu
  * Author URI:        http://kishorkhambu.com.np
  * License:           GPL-2.0+
@@ -65,58 +65,44 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/class-custom-widget-area.ph
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    1.1.3
+ * @since    1.1.4
  */
 function run_plugin_name() {
 	$plugin = new Custom_Widget_Area();
 	$plugin->run();
 
 }
-run_plugin_name();
+
 
 function cb(){
 	echo "welcome to first metabox showcase";
 }
 
 
-// db fix for new version
-/*function db_update(){
-	global $wpdb;
-	$table_name = 'wp_cwa';
-	if( (phpversion() < 5.4 && !!! session_id()) || (phpversion() > 5.3 && !!!session_status() == PHP_SESSION_NONE))
-		session_start();
-
-	if(!isset($_SESSION['db_update'])){
-		$row = $wpdb->get_results(  "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS
-		WHERE table_name = '$table_name' AND column_name = 'cwa_type'"  );
-		
-		if(empty($row)){
-		   $wpdb->query("ALTER TABLE $table_name ADD cwa_type varchar (10) ");
-		   $updaterow = $wpdb->get_results(  "SELECT id FROM $table_name");
-		   foreach ($updaterow as $data) {
-		   	# code...
-		   	$up = $wpdb->update($table_name, array('cwa_type'=> 'widget'), array('id'=>$data->id));
-		   }
-		}
-		$_SESSION['db_update'] = true;
-	}
-	
-}
-
-db_update();*/
-
 
 function myplugin_update_db_check() {
     global $kz_db_version, $wpdb, $table_name;
+    $current_version = get_site_option( 'kz_db_version' );
+    //update_site_option('kz_db_version', '1.0.4'); exit;
+   // var_dump($table_name); exit;
     if ( get_site_option( 'kz_db_version' ) != $kz_db_version ) {
         Custom_Widget_Area_Activator::activate();
-       $x = $wpdb->query("ALTER TABLE $table_name ADD cwa_type varchar (10) ");
-       $updaterow = $wpdb->get_results(  "SELECT id FROM $table_name");
-	   foreach ($updaterow as $data) {
-		   	# code...
-		   	$up = $wpdb->update($table_name, array('cwa_type'=> 'widget'), array('id'=>$data->id));
-		}
+       if(!!$current_version && $current_version < '1.1.0'){
+       		$row = $wpdb->get_results(  "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE table_name = '$table_name' AND column_name = 'cwa_type'"  );
+       		if(empty($row)){
+       			$x = $wpdb->query("ALTER TABLE $table_name ADD cwa_type varchar (10) ");
+		       $updaterow = $wpdb->get_results(  "SELECT id FROM $table_name");
+			   foreach ($updaterow as $data) {
+				   	# code...
+				   	$up = $wpdb->update($table_name, array('cwa_type'=> 'widget'), array('id'=>$data->id));
+				}
+       		}
+       		
+       }
+       
     }
+
+    run_plugin_name();
 }
 add_action( 'plugins_loaded', 'myplugin_update_db_check' );
 

@@ -6,7 +6,7 @@
  * This file is used to markup the public-facing aspects of the plugin.
  *
  * @link       http://example.com
- * @since      1.1.3
+ * @since      1.1.4
  *
  * @package    Custom_Widget_Area
  * @subpackage Custom_Widget_Area/admin/partials
@@ -21,9 +21,7 @@ class Menu_view
 	{
 		# code...
 	}
-	public function menu_settings_page(){
-		add_action( 'add_meta_boxes', self::displayView());
-	}
+	
 	public function displayView(){
 
 		
@@ -103,6 +101,13 @@ class Menu_view
 			<tbody>
 				<?php 
 				$count = 1;
+				if(empty($data)){
+					?>
+					<tr>
+						<td colspan="8" class="no-data">There is no data. create a new Menu location by filling above form.</td>
+					</tr>
+					<?php 
+				}
 				foreach ($data as $table) {
 					# code...
 					?>
