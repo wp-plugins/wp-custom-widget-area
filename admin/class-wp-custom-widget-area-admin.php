@@ -4,7 +4,7 @@
  * The dashboard-specific functionality of the plugin.
  *
  * @link       http://example.com
- * @since      1.1.4
+ * @since      1.1.5
  *
  * @package    Custom_Widget_Area
  * @subpackage Custom_Widget_Area/admin
@@ -29,7 +29,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.1.4
+	 * @since    1.1.5
 	 * @access   private
 	 * @var      string    $plugin_name    The ID of this plugin.
 	 */
@@ -38,7 +38,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.1.4
+	 * @since    1.1.5
 	 * @access   private
 	 * @var      string    $version    The current version of this plugin.
 	 */
@@ -47,7 +47,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.1.4
+	 * @since    1.1.5
 	 * @var      string    $plugin_name       The name of this plugin.
 	 * @var      string    $version    The version of this plugin.
 	 */
@@ -129,7 +129,7 @@ class Custom_Widget_Area_Admin {
 		$cwa_id = esc_html($_POST['data']['cwa_id']);
 		
 
-		$row = $wpdb->delete( $table_name, array( 'cwa_id' => $cwa_id ), $where_format = null );
+		$row = $wpdb->delete( $table_name, array( 'cwa_id' => $cwa_id, 'cwa_type' => 'widget' ), $where_format = null );
 		//wp_send_json_success(array('code' => 1, 'message' => $cwa_id.' deleted successfully.'));
 		
 		if($row>0)
@@ -267,13 +267,13 @@ class Custom_Widget_Area_Admin {
 		$cwa_id = esc_html($_POST['data']['cwa_id']);
 		
 
-		$row = $wpdb->delete( $table_name, array( 'cwa_id' => $cwa_id ), $where_format = null );
+		$row = $wpdb->delete( $table_name, array( 'cwa_id' => $cwa_id, 'cwa_type' => 'menu' ), $where_format = null );
 		//wp_send_json_success(array('code' => 1, 'message' => $cwa_id.' deleted successfully.'));
 		
 		if($row>0)
 			wp_send_json(array('code' => 1, 'message' => $cwa_id.' deleted successfully.'));
 		else
-			wp_send_json(array('code' => 0, 'message' => 'Error accured!.'));
+			wp_send_json(array('code' => 0, 'message' => $row));
 
 		die();
 	}
@@ -376,7 +376,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * Register the stylesheets for the Dashboard.
 	 *
-	 * @since    1.1.4
+	 * @since    1.1.5
 	 */
 	public function enqueue_styles() {
 
@@ -399,7 +399,7 @@ class Custom_Widget_Area_Admin {
 	/**
 	 * Register the JavaScript for the dashboard.
 	 *
-	 * @since    1.1.4
+	 * @since    1.1.5
 	 */
 	public function enqueue_scripts() {
 
